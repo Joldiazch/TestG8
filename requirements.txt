@@ -1,1 +1,2 @@
-psycopg2-binary
+Django
+psycopg2==2.8.5
