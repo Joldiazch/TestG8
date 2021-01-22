@@ -23,7 +23,7 @@ Puede ver el codigo fuente en Github [Aquí](https://github.com/Joldiazch/TestG8
 - CSS
 
 
-###Requerimientos
+### Requerimientos
 
 [Ubuntu 16.04](https://docs.microsoft.com/en-us/windows/wsl/install-win10) (Hice uso WSL2 con ubuntu 16.06) 
 [Docker](https://docs.docker.com/engine/install/ubuntu/)
