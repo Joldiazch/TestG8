@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>Crud Users</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="main-box clearfix">
+                    <div class="d-flex justify-content-between">
+                        <a href="/create/" type="button" class="btn btn-primary">Create User</a>
+                        <a href="{% url 'login'%}">Click here to login again.</a>
+                   </div>
+                    <div class="table-responsive">
+                        <table class="table user-list">
+                            <thead>
+                                <tr>
+                                    <th><span>Nombre</span></th>
+                                    <th><span>Fecha de nacimiento</span></th>
+                                    <th class="text-center"><span>Telefono</span></th>
+                                    <th><span>EPS</span></th>
+                                    <th>Rol</th>
+                                    <th>&nbsp;</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for user in users %}
+                                    <tr id="{{user.id}}">
+                                        <td>
+                                            <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="">
+                                            <a href="#" class="user-link" id="{{user.id}}-name">{{user.name}}</a>
+                                            <span class="user-subhead">{{user.gender}}</span>
+                                        </td>
+                                        <td id="{{user.id}}-dob">
+                                            {{user.dob}}
+                                        </td>
+                                        <td class="text-center" id="{{user.id}}-phone">
+                                            <span class="label label-default">{{user.phone}}</span>
+                                        </td>
+                                        <td id="{{user.id}}-eps">
+                                            <a href="#">{{user.eps.eps_name}}</a>
+                                        </td>
+                                        <td id="{{user.id}}-rol">
+                                            {{user.rol.rol_name}}
+                                        </td>
+                                        <td style="width: 20%;">
+                                            <a href="#" class="table-link" onclick="open_updateModal({{user.user.id}})">
+                                                <span class="fa-stack">
+                                                    <i class="fa fa-square fa-stack-2x"></i>
+                                                    <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
+                                                </span>
+                                            </a>
+                                            <a href="#" class="table-link danger">
+                                                <span class="fa-stack" onclick="deleteUser({{user.user.id}})">
+                                                    <i class="fa fa-square fa-stack-2x"></i>
+                                                    <i class="fa fa-trash-o fa-stack-1x fa-inverse"></i>
+                                                </span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+
+        <div class="modal fade" id="mymodal" role="dialog"></div>
+
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                <div class="mb-3">
+                    <label for="recipient-name" class="col-form-label">Nombre</label>
+                    <input type="text" class="form-control" id="recipient-name">
+                </div>
+                <div class="mb-3">
+                    <label for="recipient-name" class="col-form-label">Genero</label>
+                    <input type="text" class="form-control" id="temp-name">
+                </div>
+                <div class="mb-3">
+                    <label for="recipient-name" class="col-form-label">Telefono</label>
+                    <input type="text" class="form-control" id="temp2-name">
+                </div>
+                <div class="mb-3">
+                    <label for="message-text" class="col-form-label">Message:</label>
+                    <textarea class="form-control" id="message-text"></textarea>
+                </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Send message</button>
+            </div>
+            </div>
+        </div>
+        </div>
+        
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+    <script src="{% static 'js/index.js' %}"></script>
+    <script>
+            function deleteUser(userId) {
+                var data = {'userId': userId};
+                fetch('/delete/', {
+                    method: "POST", 
+                    body: JSON.stringify(data),
+                    headers: new Headers({
+                        'Content-Type': 'application/json',
+                        'X-CSRFTOKEN': '{{ csrf_token }}',
+                        })
+                    }).then(res => {
+                        console.log("Request complete! response:", res);
+                        window.location = '/users/'
+                });
+            }
+    </script>
+</body>
+</html>
