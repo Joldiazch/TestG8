@@ -41,6 +41,17 @@ Dentro del folder ***TestG8*** ejecutar:
 
 Esto levantará dos containers de docker llamados ***testg8_web_1***  y  ***testg8_db_1***  el primero es el servicio encargado de correr la aplicacion de Django mientras el segundo es el encargado de ejecutar una base de datos de Postgresql en la cual se almacena toda la informacion.
 
+### Ejecutar migraciones
+Para que El ORM de Django haga su magia y escriba los modelos en la base de datos debemos ejecutar las migraciones, para ello, en una nueva terminal y dentro de la carpeta ***TestG8***  ejecutamos: 
+
+`$ docker exec -it testg8_web_1 python manage.py makemigrations`
+
+y luego
+
+`$ docker exec -it testg8_web_1 python manage.py migrate`
+
+Esto mapeará los modelos y sus relaciones en tablas de nuestra base de datos de postgresSql que está corriendo en un container de Docker
+
 Para acceder a la interfaz en su navegador ingrese ***localhost***  solamente, sin especificar ningun puerto y verá lo siguiente:
 
 ![](https://i.ibb.co/NFW9gDF/login-g8.png)
