@@ -1,2 +1,4 @@
 Django
 psycopg2==2.8.5
+django-widget-tweaks
+django-crispy-forms

@@ -1,10 +1,66 @@
-# TestG8
-CRUD of Users For G8
+# Prueba Grupo Ospedale
+Prueba de conocimiento
+## CrudUsers
+Cruduser es una aplicacion web construida en Django la cual cuenta con las siguientes caracteristicas  
+### Caracteristicas
 
-## Este proyecto es una prueba para el proceso se seleccion en la compañia G8
-Se hace uso de Python y Django framework además de Docker y Docker compose para el entorno de desarrllo.
+- Login
+-  Creacion de usuarios 
+- Actualizacion de la informacion de usuarios
+- Borrar un usuario
 
-#Requerimientos
-Para este proyecto es necesario instalar los siguientes programas:
-Python: https://www.python.org/
-Docker: https://www.docker.com/get-started
+Puede ver el codigo fuente en Github [Aquí](https://github.com/Joldiazch/TestG8)
+
+### Stack de tecnología
+#### Backend
+- Python
+- Django
+- Docker
+
+#### Front-end
+- Javascript
+- Html
+- CSS
+
+
+###Requerimientos
+
+[Ubuntu 16.04](https://docs.microsoft.com/en-us/windows/wsl/install-win10) (Hice uso WSL2 con ubuntu 16.06) 
+[Docker](https://docs.docker.com/engine/install/ubuntu/)
+[Docker Compose](https://docs.docker.com/compose/install/)
+Tambien puede installar [Docker Desktop for Windows](https://hub.docker.com/editions/community/docker-ce-desktop-windows)
+
+### Modelo Entidad Relación
+![](https://i.ibb.co/RQV5zgr/ERD-import-example.png)
+###Correr el proyecto
+Luego de tener instalado en tu maquina docker y docker compose procedemos a lo siguiente:
+
+Dentro del folder ***TestG8*** ejecutar:
+
+`$ docker-compose up`
+
+Esto levantará dos containers de docker llamados ***testg8_web_1***  y  ***testg8_db_1***  el primero es el servicio encargado de correr la aplicacion de Django mientras el segundo es el encargado de ejecutar una base de datos de Postgresql en la cual se almacena toda la informacion.
+
+Para acceder a la interfaz en su navegador ingrese ***localhost***  solamente, sin especificar ningun puerto y verá lo siguiente:
+
+![](https://i.ibb.co/NFW9gDF/login-g8.png)
+
+Para ingresar por primera vez, nos dirigimos a la consola y dentro de la carpeta ***TestG8***  ejecutamos en siguiente comanto:
+
+`$ docker exec -it testg8_web_1 python manage.py createsuperuser`
+
+Aparecera en la linea de comandos la siguiente instrucction, insertamos el username con el que haremos login
+
+![](https://i.ibb.co/N2xDp8c/superuser.png)
+
+Con estas credenciales nos dirigimos nuevamnet al ***localhost*** y hacer el respoectivo login.
+
+Luego de hacer el login lo redireccionará a ***http://localhost/users***
+
+![](https://i.ibb.co/1GvT2q6/lista.png)
+
+Donde podrá ver la lista de usuarios creados (Entiendase en el momento usted está logueado como Superuser, por lo tanto su usuario no aparecerá en la lista)
+
+Para registrar usuarios puede hacer uso del boton en la parte superior izquierda
+
+Tambien puede hacer uso de las opciones de editar y eliminar usuarios *Cuando ya haya creado algunos*
