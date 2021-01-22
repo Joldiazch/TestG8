@@ -25,14 +25,15 @@ Puede ver el codigo fuente en Github [Aquí](https://github.com/Joldiazch/TestG8
 
 ### Requerimientos
 
-[Ubuntu 16.04](https://docs.microsoft.com/en-us/windows/wsl/install-win10) (Hice uso WSL2 con ubuntu 16.06) 
+[Ubuntu 16.04](https://docs.microsoft.com/en-us/windows/wsl/install-win10) (Hice uso WSL2 con ubuntu 16.04) 
 [Docker](https://docs.docker.com/engine/install/ubuntu/)
 [Docker Compose](https://docs.docker.com/compose/install/)
 Tambien puede installar [Docker Desktop for Windows](https://hub.docker.com/editions/community/docker-ce-desktop-windows)
 
 ### Modelo Entidad Relación
 ![](https://i.ibb.co/RQV5zgr/ERD-import-example.png)
-###Correr el proyecto
+
+### Correr el proyecto
 Luego de tener instalado en tu maquina docker y docker compose procedemos a lo siguiente:
 
 Dentro del folder ***TestG8*** ejecutar:
